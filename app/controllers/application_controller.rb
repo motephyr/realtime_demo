@@ -28,6 +28,6 @@ end
 
 def realtime_server_url
     # point this to your node.js-socket.io-redis/zmq realtime server (you can set this later)
-    return 'http://localhost:5001'
+    return 'http://10.12.8.103:5001'
 end
 end

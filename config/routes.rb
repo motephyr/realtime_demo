@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :welcome do
     collection do
       get 'three'
+      get 'mobile'
     end
   end
 
