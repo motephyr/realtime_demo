@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Three.js testing app</title>
+		<link rel="stylesheet" type="text/css" href="/assets/objects.css">
+		<link rel="stylesheet" type="text/css" href="/assets/main.css">
+	</head>
+	<body>
+		<div id="canvas-wrap">
+  		
+  		<div id="overlay"><ul id="scene">
+			<li class="layer" data-depth="0.00"><img src="/assets/paris-skyline.jpg"></li>
+			<li class="layer" data-depth="0.04"><img class="leave" src="/assets/autumn_leaves_200.png"></li>
+			<li class="layer" data-depth="0.6"><img class="bottle" src="/assets/bottle_200.png"></li>
+			<li class="layer" data-depth="0.01"><img class="tree" src="/assets/fir_tree_h400.png"></li>
+			<li class="layer" data-depth="0.9"><img class="ship" src="/assets/ship1.png"></li>
+			<li class="layer" data-depth="0.4"><img class="smoke shift-1" src="/assets/smoke_PNG973.png"></li>
+		</ul></div>
+		</div>
+		<script src="/assets/three.min.js"></script>
+		<script src="/assets/parallax.min.js"></script>
+		<script src="/assets/THREEx.KeyboardState.js"></script>
+		<script src="/assets/3d.js"></script>
+
+		<script>
+		var parallaxScene = document.getElementById('scene');
+		var parallax = new Parallax(parallaxScene);
+		</script>
+	</body>
+</html>

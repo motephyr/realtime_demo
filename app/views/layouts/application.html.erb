@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RealtimeDemo</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+
+	<script type='text/javascript'>
+
+	window.realtime = {};
+	window.realtime.enabled = false;
+
+</script>
+
+<script src="<%= @realtime_server_url %>/socket.io/socket.io.js"></script>
+
+<script type='text/javascript'>
+
+	if (typeof io != 'undefined' && io != null) {
+		window.realtime.token = '<%= @realtime_token %>';
+		window.realtime.userId = '<%= @realtime_user_id %>';
+		window.realtime.socketIo = io.connect('<%= @realtime_server_url %>/?_rtUserId=<%= @realtime_user_id %>&_rtToken=<%= @realtime_token %>');
+	}
+
+	if (window.realtime.socketIo) {
+	
+		window.realtime.enabled = true;
+
+		window.realtime.socketIo.on('connect', function() {
+			// Give a nice round-trip ACK to our realtime server that we connected.
+    		window.realtime.socketIo.emit('realtime_user_id_connected');
+    		console.log("connect");
+  		});
+  		window.realtime.socketIo.on('disconnect', function() {
+			// Give a nice round-trip ACK to our realtime server that we connected.
+    		console.log("disconnect");
+  		});
+
+	}
+
+</script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+	<%#= realtime_support %>
+
+	<%#= realtime_message_handler %>
+
+	<%#= realtime_message_console_logger %>
+</head>
+<body>
+
+	<%= yield %>
+<%= yield :javascripts %>
+</body>
+</html>
