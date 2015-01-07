@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 end
 
 def realtime_server_url
-    # point this to your node.js-socket.io-redis/zmq realtime server (you can set this later)
-    return 'http://10.12.8.103:5001'
+
+    return "#{request.env["SERVER_NAME"]}:5001"
 end
 end
