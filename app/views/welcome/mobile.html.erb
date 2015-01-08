@@ -1,0 +1,72 @@
+<% content_for :stylesheets do %>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+	<link rel="stylesheet" type="text/css" href="/assets/objects.css">
+	<link rel="stylesheet" type="text/css" href="/assets/main.css">
+<% end %>
+<% content_for :javascripts do %>
+	<script>
+		var up, upContext;
+		var down, downContext;
+		var left, leftContext;
+		var right, rightContext;
+
+		var doLayout = function(){
+			var w = $(window).width();
+			var h = $(window).height();
+			var cw = w / 3;
+			cw = Math.min(cw, h / 3);
+
+			$("#upSection,#downSection,#leftSection,#rightSection").width(cw).height(cw);
+			$("#upSection").offset({left: cw ,top: 0});
+			$("#downSection").offset({left: cw ,top: cw * 2});
+			$("#leftSection").offset({left: 0 ,top: cw});
+			$("#rightSection").offset({left: cw * 2 ,top: cw});
+		};
+		$(window).load(function(){
+			up = document.getElementById('upSection');
+			//upContext = up.getContext('2d');
+
+			down = document.getElementById('downSection');
+			//downContext = down.getContext('2d');
+
+			left = document.getElementById('leftSection');
+			//leftContext = left.getContext('2d');
+
+			right = document.getElementById('rightSection');
+			//rightContext = right.getContext('2d');
+			//alert("load");
+			//if (window.realtime.socketIo) {
+				
+				$(up).on('click', function(){
+					
+					window.realtime.socketIo.emit('move_up');
+				});
+				$(down).on('click', function(){
+					
+					window.realtime.socketIo.emit('move_down');
+				});
+				$(left).on('click', function(){
+					
+					window.realtime.socketIo.emit('move_left');
+				});
+				$(right).on('click', function(){
+					
+					window.realtime.socketIo.emit('move_right');
+				});
+			//}
+			
+			$("#upSection,#downSection,#leftSection,#rightSection").css("background", "#dbdbdb");
+
+			doLayout();
+		});
+		$(window).resize(function(){
+			doLayout();
+		});
+
+
+	</script>
+<% end %>	
+	<div id="upSection"></div>
+	<div id="downSection"></div>
+	<div id="leftSection"></div>
+	<div id="rightSection"></div>
