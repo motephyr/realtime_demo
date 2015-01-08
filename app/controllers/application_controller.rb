@@ -28,6 +28,6 @@ end
 
 def realtime_server_url
 
-    return "#{request.env["SERVER_NAME"]}:5001"
+    return "http://#{request.env["SERVER_NAME"]}:5001"
 end
 end
